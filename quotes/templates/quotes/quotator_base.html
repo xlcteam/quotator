@@ -13,8 +13,9 @@
     <body>
         <div id="userinfo">
             {% if user.is_authenticated %}
-                Logged in as {{ user.username }} | 
-                <a href="{% url 'account_logout' %}">Log out</a>
+                Logged in as <b>{{ user.username }}</b> | 
+                <a href="{% url 'account_logout' %}">Log out</a> | 
+                <a href="{% url 'quote_create' %}">Create new quote</a>
             {% else %}
                 Please <a href="{% url 'account_signup' %}">Sign up</a>
                 or <a href="{% url 'account_login' %}">Log in</a>

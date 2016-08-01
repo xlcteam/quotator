@@ -1,0 +1,12 @@
+{% extends "quotes/quotator_base.html" %}
+
+{% block content %}
+    {% for quote in quotes %}
+        <div class="quotebox">
+            <p class="quote-text">"{{ quote.text }}"</p>
+            <p class="quote-author">by {{ quote.author }} | 
+            added {{ quote.created_date }} | 
+            <a href="{% url 'quote_edit' quote.id %}">Edit</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}

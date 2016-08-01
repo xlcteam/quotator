@@ -6,13 +6,6 @@ from django.contrib.auth.models import User
 
 class Quote(models.Model):
     user = models.ForeignKey(User)
-    quote = models.TextField()
-    quote_by = models.CharField(max_length=255)
-
-
-class Quotes(models.Model):
-    user = models.ForeignKey(User)
-    quotes = models.ManyToManyField(Quote)
-
-
-
+    text = models.TextField()
+    author = models.CharField(max_length=255)
+    created_date = models.DateTimeField()

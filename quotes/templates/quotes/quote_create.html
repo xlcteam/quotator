@@ -1,0 +1,11 @@
+{% extends "quotes/quotator_base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="SAVE"/>
+</form>
+{% endblock %}

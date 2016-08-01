@@ -1,3 +1,20 @@
 #userinfo {
     border: 1px solid black;
+    padding: 10px;
+}
+
+.quotebox {
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.quotebox .quote-text {
+    font-style: italic;
+    font-size: 110%;
+}
+
+.quotebox .quote-author {
+    font-size: 90%;
 }

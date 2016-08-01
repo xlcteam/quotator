@@ -1,0 +1,28 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Quotator</title>
+
+          <link rel="stylesheet" href="{% static 'quotes/css/main.css' %}">
+    </head>
+
+
+    <body>
+        <div id="userinfo">
+            {% if user.is_authenticated %}
+                Logged in as {{ user.username }} | 
+                <a href="{% url 'account_logout' %}">Log out</a>
+            {% else %}
+                Please <a href="{% url 'account_signup' %}">Sign up</a>
+                or <a href="{% url 'account_login' %}">Log in</a>
+            {% endif %}
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

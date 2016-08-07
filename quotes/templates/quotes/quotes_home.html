@@ -6,7 +6,13 @@
             <p class="quote-text">"{{ quote.text }}"</p>
             <p class="quote-author">by {{ quote.author }} | 
             added {{ quote.created_date }} | 
-            <a href="{% url 'quote_edit' quote.id %}">Edit</a></p>
+            <a href="{% url 'quote_edit' quote.id %}">Edit</a> | 
+            <form method="POST" action="{% url 'quote_delete' quote.id %}">
+              {% csrf_token %}
+              <input type="submit" value="DELETE"
+                style="background-color: red; color: white;">
+            </form>
+            </p>
         </div>
     {% endfor %}
 {% endblock %}

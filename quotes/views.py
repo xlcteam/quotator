@@ -5,7 +5,7 @@ from django.shortcuts import (render, HttpResponseRedirect, get_object_or_404,
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
 from .models import Quote
@@ -49,5 +49,15 @@ class QuoteEdit(UpdateView):
         return reverse('quotes_home')
 
 
+class QuoteDelete(DeleteView):
+    
+    def get_object(self, queryset=None):
+        return self.request.user.quote_set.get(pk=self.kwargs['quote_id'])
+
+    def get_success_url(self):
+        return reverse('quotes_home')
+
+
 quote_create = QuoteCreate.as_view()
 quote_edit = QuoteEdit.as_view()
+quote_delete = QuoteDelete.as_view()

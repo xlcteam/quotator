@@ -18,3 +18,7 @@
 .quotebox .quote-author {
     font-size: 90%;
 }
+
+.quote-schedule input[type="number"] {
+    width: 50px;
+}

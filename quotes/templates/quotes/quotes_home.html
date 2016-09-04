@@ -6,13 +6,40 @@
             <p class="quote-text">"{{ quote.text }}"</p>
             <p class="quote-author">by {{ quote.author }} | 
             added {{ quote.created_date }} | 
-            <a href="{% url 'quote_edit' quote.id %}">Edit</a> | 
-            <form method="POST" action="{% url 'quote_delete' quote.id %}">
+            <a href="{% url 'quote_edit' quote.id %}">Edit</a> |
+            <span class=quote-scheduled
+                {% if not quote.scheduled %}style="display:none;"{% endif %}>
+                Scheduled on
+                    <span>{{ quote.scheduled|date:"d.m.Y H:i"}}<span>
+                <button class="quote-deschedule">Remove schedule</button>
+            </span>
+
+            <form method="POST" class="quote-delete">
               {% csrf_token %}
+              <input type="hidden" name="quote_pk" value="{{ quote.pk }}">
               <input type="submit" value="DELETE"
                 style="background-color: red; color: white;">
             </form>
+
+            <form method="POST" class="quote-schedule"
+                {% if quote.scheduled %}style="display:none;"{% endif %}>
+                {% csrf_token %}
+                Day: <input type="number" name="schedule_d" min="1" max="31">
+                Month: <input type="number" name="schedule_m" min="1" max="12">
+                Year: <input type="number" name="schedule_y" min="2016">
+                Time: <input type="text" name="schedule_time"
+                        placeholder="Time in format HH:MM">
+                <input type="hidden" name="quote_pk" value="{{ quote.pk }}">
+                <input type="submit" value="Schedule">
+            </form>
+
             </p>
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block ready_js %}
+    {% include "quotes/js/quote_delete.js" %}
+    {% include "quotes/js/quote_schedule.js" %}
+
 {% endblock %}

@@ -9,4 +9,4 @@ class Quote(models.Model):
     text = models.TextField()
     author = models.CharField(max_length=255)
     created_date = models.DateTimeField()
-    scheduled = models.DateTimeField()
+    scheduled = models.DateTimeField(null=True)

@@ -85,7 +85,7 @@ class QuoteDelete(DeleteView):
             done = False
 
         result = 'OK' if done else 'FAIL'
-        data = {'result': result, 'fero': 'taraba'}
+        data = {'result': result}
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 quote_create = QuoteCreate.as_view()

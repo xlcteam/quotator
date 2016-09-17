@@ -22,3 +22,20 @@
 .quote-schedule input[type="number"] {
     width: 50px;
 }
+
+.quote-recipients {
+    width: 50%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+.quote-recipients tr td,
+.quote-recipients tr th {
+    padding: 5px;
+    border: 1px solid #d4d4d4;
+}
+
+.quote-recipients tr:nth-child(2n) {
+    background-color: #f1f1f1;
+}

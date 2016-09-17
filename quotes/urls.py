@@ -25,7 +25,12 @@ urlpatterns = [
     url(r'^add$', login_required(views.quote_create), name='quote_create'),
     url(r'^edit/(?P<quote_id>[0-9]+)$', login_required(views.quote_edit),
         name='quote_edit'),
+
     url(r'^delete/$', views.quote_delete, name='quote_delete'),
+
     url(r'^schedule/$', views.quote_schedule, name='quote_schedule'),
+
+    url(r'^recipients/$', login_required(views.quote_recipients),
+        name='quote_recipients'),
 
 ]

@@ -1,0 +1,46 @@
+{% extends "quotes/quotator_base.html" %}
+
+{% block content %}
+    <div class="quotebox">
+        <h4>Add a recipient</h4>
+        
+        <form method="POST" action=".">
+            {% csrf_token %}
+            <input type="text" name="rec_name" placeholder="Name" required>
+            <input type="text" name="rec_surname" placeholder="Surname" required>
+            <input type="email" name="rec_email" placeholder="E-mail" required>
+            <input type="submit" value="Add" name="rec_add">
+        </form>
+    </div>
+
+    {% if recipients %}
+    <table class="quote-recipients">
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>E-mail</th>
+            <th></th>
+        </tr>
+        
+        {% for rec in recipients %}
+        <tr>
+            <td>{{ rec.name }}</td>
+            <td>{{ rec.surname }}</td>
+            <td>{{ rec.email }}</td>
+            <td>
+                <form method="POST" class="quote-delete" action=".">
+                  {% csrf_token %}
+                  <input type="hidden" name="rec_pk" value="{{ rec.pk }}">
+                  <input type="submit" value="DELETE" name="rec_del"
+                    style="background-color: red; color: white;">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
+
+{% block ready_js %}
+
+{% endblock %}

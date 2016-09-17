@@ -35,6 +35,9 @@
 
             </p>
         </div>
+    {% empty %}
+        <h2>No quotes here. <a href="{% url 'quote_create' %}">Create one</a>
+        </h2>
     {% endfor %}
 {% endblock %}
 

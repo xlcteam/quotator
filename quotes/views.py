@@ -61,17 +61,12 @@ def quote_recipients(request):
 
 def quote_schedule(request):
     quote_pk = request.POST['quote_pk']
-    day = request.POST['day']
-    month = request.POST['month']
-    year = request.POST['year']
-    time = request.POST['time']
+    stime = request.POST['stime']
 
     done = True
     try:
         obj = Quote.objects.get(pk=quote_pk)
-        obj.scheduled = datetime.strptime(
-                '{0}.{1}.{2} {3}'.format(day, month, year, time),
-                SCHEDULE_FORMAT)
+        obj.scheduled = datetime.strptime(stime, SCHEDULE_FORMAT)
         obj.save()
     except:
         done = False

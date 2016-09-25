@@ -1,5 +1,17 @@
 {% extends "quotes/quotator_base.html" %}
 
+{% load staticfiles %}
+
+{% block css %}
+    <link rel="stylesheet"
+        href="{% static 'quotes/css/jquery.datetimepicker.min.css' %}">
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'quotes/js/jquery.datetimepicker.full.min.js' %}">
+    </script>
+{% endblock %}
+
 {% block content %}
     {% for quote in quotes %}
         <div class="quotebox">
@@ -10,8 +22,8 @@
             <span class=quote-scheduled
                 {% if not quote.scheduled %}style="display:none;"{% endif %}>
                 Scheduled on
-                    <span>{{ quote.scheduled|date:"d.m.Y H:i"}}<span>
-                <button class="quote-deschedule">Remove schedule</button>
+                    <span>{{ quote.scheduled|date:"d.m.Y H:i"}}</span>
+                <!--button class="quote-deschedule">Remove schedule</button-->
             </span>
 
             <form method="POST" class="quote-delete">
@@ -24,11 +36,8 @@
             <form method="POST" class="quote-schedule"
                 {% if quote.scheduled %}style="display:none;"{% endif %}>
                 {% csrf_token %}
-                Day: <input type="number" name="schedule_d" min="1" max="31">
-                Month: <input type="number" name="schedule_m" min="1" max="12">
-                Year: <input type="number" name="schedule_y" min="2016">
-                Time: <input type="text" name="schedule_time"
-                        placeholder="Time in format HH:MM">
+                <input type="text" class="datetimepicker"
+                    name="schedule_time">
                 <input type="hidden" name="quote_pk" value="{{ quote.pk }}">
                 <input type="submit" value="Schedule">
             </form>

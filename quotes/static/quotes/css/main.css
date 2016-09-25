@@ -19,10 +19,6 @@
     font-size: 90%;
 }
 
-.quote-schedule input[type="number"] {
-    width: 50px;
-}
-
 .quote-recipients {
     width: 50%;
     margin-top: 20px;

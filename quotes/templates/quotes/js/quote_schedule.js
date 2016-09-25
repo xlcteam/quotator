@@ -1,13 +1,9 @@
 $(document).on('submit', 'form.quote-schedule', function(){
     var selector = $(this);
     var q_pk = $(this).find('input[name="quote_pk"]').val();
-    
-    var sday = $(this).find('input[name="schedule_d"]').val();
-    var smonth = $(this).find('input[name="schedule_m"]').val();
-    var syear = $(this).find('input[name="schedule_y"]').val();
-    var stime = $(this).find('input[name="schedule_time"]').val();
+    var schedule_time = $(this).find('input[name="schedule_time"]').val();
 
-    if (q_pk == '' || sday == '' || smonth == '' || syear == '' || stime=='')
+    if (schedule_time == '')
         return false;
     
     var request_url = "{% url 'quote_schedule' %}";
@@ -17,10 +13,7 @@ $(document).on('submit', 'form.quote-schedule', function(){
         data: {
             csrfmiddlewaretoken: '{{ csrf_token }}',
             quote_pk: q_pk,
-            day: sday,
-            month: smonth,
-            year: syear,
-            time: stime
+            stime: schedule_time,
         },
 
         success: function(response) {
@@ -39,4 +32,7 @@ $(document).on('submit', 'form.quote-schedule', function(){
     return false;
 });
 
-
+/* initialize datetimepicker */
+$('.datetimepicker').datetimepicker({
+    format: 'd.m.Y H:i'
+});
